@@ -4,7 +4,7 @@ let frontWheel = document.querySelector(".front-wheel");
 let trafficLight = document.querySelector(".traffic-light");
 let lights = trafficLight.querySelectorAll(".light");
 
-let carSpeed = 3; // car moving speed
+let carSpeed = 2.5; // car moving speed
 let moving = true;
 
 const lightDurations = [3000, 1000, 5000]; // red, yellow, green durations in milliseconds
@@ -15,8 +15,10 @@ function moveCar() {
   if (moving) {
     let carLeft = parseInt(window.getComputedStyle(car).left, 10);
     car.style.left = carLeft + carSpeed + "px";
+    if (carLeft > window.innerWidth) {
+      car.style.left = "-100px"; // Reset car position to the left side of the screen
+    }
   }
-
   requestAnimationFrame(moveCar);
 }
 
